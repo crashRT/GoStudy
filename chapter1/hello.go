@@ -7,17 +7,47 @@ import (
 )
 
 func main() {
-	x := 5
-	switch x {
-	case f(1):
-		fmt.Println("1")
-	case f(2):
-		fmt.Println("2")
-	case f(3):
-		fmt.Println("3")
-	default:
-		fmt.Println("default")
-	}
+	a := []int{10, 20, 30}
+	fmt.Println("a: ", a)
+	a = push(a, 100)
+	fmt.Println("a: ", a)
+	a = pop(a)
+	fmt.Println("a: ", a)
+	a = unshift(a, 1000)
+	fmt.Println("a: ", a)
+	a = shift(a)
+	fmt.Println("a: ", a)
+	a = insert(a, 1000, 2)
+	fmt.Println("a: ", a)
+	a = remove(a, 2)
+	fmt.Println("a: ", a)
+}
+
+func push(a []int, n int) []int {
+	return append(a, n)
+}
+
+func pop(a []int) []int {
+	return a[:len(a)-1]
+}
+
+func unshift(a []int, n int) []int {
+	return append([]int{n}, a...)
+}
+
+func shift(a []int) []int {
+	return a[1:]
+}
+
+func insert(a []int, n, i int) []int {
+	a = append(a, 0)
+	a = append(a[:i+1], a[i:len(a)-1]...)
+	a[i] = n
+	return a
+}
+
+func remove(a []int, i int) []int {
+	return append(a[:i], a[i+1:]...)
 }
 
 func f(n int) int {
