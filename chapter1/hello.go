@@ -23,8 +23,9 @@ func main() {
 	fmt.Println("a: ", a)
 }
 
-func push(a []int, n int) []int {
-	return append(a, n)
+func push(a []int, n ...int) (s []int) {
+	s = append(a, n...)
+	return
 }
 
 func pop(a []int) []int {
