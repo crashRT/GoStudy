@@ -5,8 +5,9 @@ import (
 )
 
 func main() {
-	hh := func(w http.ResponseWriter, rq *http.Request) {
-		w.Write([]byte("Hello, World!"))
+	msg := `<h1>Hello, World!</h1>`
+	hh := func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte(msg))
 	}
 
 	http.HandleFunc("/hello", hh)
