@@ -7,25 +7,13 @@ import (
 )
 
 func main() {
-	html := `
-	<!DOCTYPE html>
-	<html>
-		<head>
-			<title>Web</title>
-		</head>
-		<body>
-			<h1>Hello World!</h1>
-			<p> Go server is running.</p>
-		</body>
-	</html>`
-
-	tf, er := template.New("web").Parse(html)
+	tf, er := template.ParseFiles("templates/index.html")
 	if er != nil {
-		log.Fatal(er)
+		tf, _ = template.New("index").Parse("<html><body>body><h1>NO TEMPLATE.</h1></body></html>")
 	}
 
 	hh := func(w http.ResponseWriter, r *http.Request) {
-		er = tf.Execute(w, nil)
+		er := tf.Execute(w, nil)
 		if er != nil {
 			log.Fatal(er)
 		}
