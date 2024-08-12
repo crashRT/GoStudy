@@ -5,5 +5,11 @@ import (
 )
 
 func main() {
-	http.ListenAndServe(":8080", http.FileServer(http.Dir(".")))
+	hh := func(w http.ResponseWriter, rq *http.Request) {
+		w.Write([]byte("Hello, World!"))
+	}
+
+	http.HandleFunc("/hello", hh)
+
+	http.ListenAndServe(":8080", nil)
 }
